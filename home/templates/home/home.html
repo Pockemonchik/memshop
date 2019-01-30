@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{%load staticfiles%}
+{% block content %}
+<div class="container marketing">
+
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+      <div class="col-lg-4">
+        <img src="{%static "haha.png"%}" alt="" class="img-responsive center-block" height="300" width="300" >
+        <h2>Революция в мемостроении</h2>
+        <p>Регистрируйтесь и получайте возможность создавать свои собственные мемы, выставлять их на продажу, а так же собирать свою мемную галерею!</p>
+        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <img src="{%static "troll.png"%}" alt="" class="img-responsive center-block"  height="300" width="300">>
+        <h2>Лучшая мем-биржа к рунете!</h2>
+        <p>Станьте самым богатым мемдиллером в Росиии, не потратив ни рубаса, дайте своему чувству юмора свободу!</p>
+        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <img src="{%static "jak.png"%}" alt="" class="img-responsive center-block" height="300" width="300">>
+          <h2>Мемы на любой вкус и цвет!</h2>
+        <p>Огромная база мемов со всей России, выберете то что нравится, показывайте друзьям, деградируйте вместе с нами!</p>
+        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+  </div>
+{% endblock%}

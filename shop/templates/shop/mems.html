@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{%load staticfiles%}
+{% block content %}
+<div>
+  <!-- {%for mem in mems%}
+  <td>
+    {% if mem.mem_img %}
+      <img src="{{mem.mem_img.url}}" height="300" width="300">
+  {% endif %}
+   <p>{{mem.cost}}</p>
+    <p>{{mem.disctiption}}</p>
+    <p>{{mem.author}}</p>
+  </td>
+  {%endfor%} -->
+
+  <div class="album py-5 bg-light">
+      <div class="container">
+        <button class="btn btn-success btn-lg btn-block" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+          Catalog
+        </button>
+      <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+          <div class="list-group" id="list-tab" role="tablist">
+            {% for c in categories %}
+            <a class="list-group-item list-group-item-action active bg-success" href="{{c.get_absolute_url}}">{{c.name}}</a>
+            {%endfor%}
+          </div>
+
+        </div>
+      </div>
+        <div class="row">
+          {%for mem in mems%}
+          <div class="col-md-4">
+            <div class="card mb-4 bg-light hadow-sm" >
+              {% if mem.mem_img %}
+                <img src="{{mem.mem_img.url}}" height="300" width="300">
+              {% endif %}
+              <div class="card-body">
+                <p class="card-text">{{mem.disctiption}}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                  </div>
+                  <small class="text-muted">9 mins</small>
+                </div>
+                <p><strong>Cost: </strong>{{mem.cost}}</p>
+                <p> <strong>Author: </strong> <a href="../../profiles/{{mem.author}}">{{mem.author}}</a></p>
+                  `  <form action="{% url "cart:cart_add" mem.id  %}" method="post">
+                        {{ cart_mem_form }}
+                        {% csrf_token %}
+                        <input type="submit" value="Add to cart">
+                      </form>`
+              </div>
+            </div>
+          </div>
+          {%endfor%}
+        </div>
+      </div>
+    </div>
+
+</div>
+{% endblock%}

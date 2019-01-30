@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{%load staticfiles%}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card mb-4 bg-light hadow-sm" >
+        {% if profile.user_picture %}
+          <img src="{{profile.user_picture.url}}" maxheight="500" width=100%>
+        <div class="card-body">
+          <form action="." method="post" enctype="multipart/form-data">
+            {{profileForm.as_p}}
+            {% csrf_token %}
+                           <p><input type="submit" value="Change avatar"></p>
+                       </form>
+            {%else%}
+            <form action="." method="post" enctype="multipart/form-data">
+              {{profileForm.as_p}}
+              {% csrf_token %}
+                             <p><input type="submit" value="Add avatar"></p>
+                         </form>
+
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-6">
+      <div class="card mb-4 bg-light hadow-sm" >
+        <p>User: {{profile.user}}</p>
+        {% if user.is_authenticated %}
+          <p class="h3">Your balanse : {{profile.user_balance}} </p>
+          <p>About me: jklgfghjkmngyhgvbjhbkj,</p>
+        {% else %}
+        <p class="h3">Info about {{profile.user}} : jklgfghjkmngyhgvbjhbkj</p>
+        {% endif %}
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        <p>MEMS of this profile</p>
+      <div class="row">
+
+        {%for mem in mems%}
+        <div class="col-md-4">
+          <div class="card mb-4 bg-light hadow-sm" >
+            {% if mem.mem_img %}
+              <img src="{{mem.mem_img.url}}" height="300" width="300">
+            {% endif %}
+            <div class="card-body">
+              <p class="card-text">{{mem.disctiption}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                </div>
+                <small class="text-muted">9 mins</small>
+              </div>
+              <p>{{mem.cost}}</p>
+            </div>
+          </div>
+        </div>
+        {%endfor%}
+      </div>
+      <p> DOBAVIT MEM!</p>
+      <form action="." method="post" enctype="multipart/form-data">
+                       {{form.as_p }}
+                       {% csrf_token %}
+                       <p><input type="submit" value="Add MEM"></p>
+                   </form>
+    </div>
+
+  </div>
+{% endblock%}
