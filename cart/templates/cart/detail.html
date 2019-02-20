@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {%load staticfiles%}
 {% block content %}
-<div class="container">
+<div class="mid-content">
 
-
+{%if not success%}
 <h1>Your shopping cart</h1>
 <table class="table">
   <thead>
@@ -23,15 +23,16 @@
                     <td>
                         <a href="{{ mem.get_absolute_url }}">
                             <img src="
-                                {% if mem.image %}
-                                    {{ mem.image.url }}
+                                {% if mem.mem_img %}
+
+                                    {{mem.mem_img.url}}
                                 {% else %}
                                     {% static "img/no_image.png" %}
-                                {% endif %}">
+                                {% endif %}" height="64" width="64">
                         </a>
                     </td>
                     <td>{{ mem.name }}</td>
-                    <td>{{ item.quantity }}</td>
+                    <!-- <td>{{ item.quantity }}</td> -->
                     <td><a href="{% url "cart:cart_remove" mem.id%}">Remove</a></td>
                     <td class="num">${{ item.cost }}</td>
                     <td class="num">${{ item.total_cost }}</td>
@@ -49,5 +50,8 @@
         <a href="{% url "shop:List_shop" %}" class="button light">Continue shopping</a>
         <a href="{% url "cart:order" %}" class="button">Order</a>
     </p>
+    {%else%}
+    Congratilations!You buy some memes!
+    {%endif%}
     </div>
 {% endblock%}

@@ -7,4 +7,6 @@ app_name = 'shop'
 urlpatterns= [
     url('(?P<category_slug>[-\w]+)/',views.List_shop, name='List_shop_by_category'),
     url(r'^$',views.List_shop, name='List_shop'),
+
+    # url(r'search/',views.search, name='search'),
     ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

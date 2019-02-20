@@ -34,12 +34,24 @@ def order(request):
     client=UserProfile.objects.get(user__username=client1.username)
     print(cart)
     print(client.user_balance)
+    success=False
     # total_cost=int(str(cart.get_total_cost))
     if client.user_balance>=cart.get_total_cost():
         mem_ids = cart.get_keys()
         mems=Mem.objects.filter(id__in=mem_ids)
+        #передача права на мем и вычитание его передача денег автору
         for mem in mems:
-            mem.author=client1
+            profile1=get_object_or_404(UserProfile,user__username=mem.author)
+            profile1.user_balance+=mem.cost
+            profile1.save(update_fields=['user_balance'])
+            mem.author=client
             mem.save()
+        profile=get_object_or_404(UserProfile,user__username=client1)
+        profile.user_balance-=cart.get_total_cost()
+        profile.save(update_fields=['user_balance'])
         cart.clear()
-    return render(request, 'cart/detail.html', {'cart': cart})
+        success=True
+    return render(request, 'cart/detail.html', {
+    'cart': cart,
+    'success':success
+            })

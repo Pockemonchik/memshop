@@ -6,6 +6,8 @@ from django.conf.urls.static import static
 
 urlpatterns= [
     url(r'^(?P<slug>[\w-]+)/$',views.detail_profile, name='detail_profile'),
+    url(r'^add_to_shop/(?P<mem_id>\d+)/$',views.add_to_shop, name='add_to_shop'),
+    url(r'^del_from_shop/(?P<mem_id>\d+)/$',views.del_from_shop, name='del_from_shop')
     ]
 if settings.DEBUG:
     urlpatterns = urlpatterns + static(settings.STATIC_URL,

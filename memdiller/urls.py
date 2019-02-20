@@ -24,7 +24,7 @@ urlpatterns = [
     url('admin/', admin.site.urls),
     url('auth/', include('django.contrib.auth.urls')),
     url(r'^accounts/', include('accounts.urls')),
-    url('profiles/', include('profiles.urls')),
+    url(r'^profiles/', include('profiles.urls')),
     url('shop/', include('shop.urls',namespace='shop')),
     url(r'^$', include('home.urls')),
     url('api/', include('api.urls')),

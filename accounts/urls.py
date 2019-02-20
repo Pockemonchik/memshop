@@ -24,6 +24,7 @@ from django.contrib.auth.views import LoginView
 
 urlpatterns = [
     url('registration/', views.reg,name="reg"),
+    url('login/',views.log,name="log")
 ]
 if settings.DEBUG:
     urlpatterns = urlpatterns + static(settings.STATIC_URL,

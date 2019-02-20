@@ -7,13 +7,15 @@ from django.conf import settings
 # Import static if not imported
 from django.conf.urls.static import static
 from django.contrib.auth.views import LoginView
+from rest_framework.authtoken import views as v
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
 router.register(r'shopApi', views.MemViewSet)
+router.register(r'profiles', views.ProfileViewSet)
 
 urlpatterns = [
-    path('', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path(r'', include(router.urls)),
+    path('api-token-auth/', v.obtain_auth_token, name='api-token-auth')
 ]

@@ -24,7 +24,7 @@ SECRET_KEY = 'q#l_-q$!&_c47(@g#f@=8_a4$br8tm2nr%^i!s54rs-_g#4#t^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["192.168.0.37"]
+ALLOWED_HOSTS = ["192.168.0.37","127.0.0.1"]
 
 
 # Application definition
@@ -36,7 +36,9 @@ INSTALLED_APPS = [
     'accounts',
     'bootstrap4',
     'rest_framework',
+    'rest_framework.authtoken',
     'cart',
+    'drf_multiple_model',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -161,9 +163,11 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-    )
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    # 'DEFAULT_PERMISSION_CLASSES': (
+    #     'rest_framework.permissions.IsAuthenticated',
+    # )
 }
 CART_SESSION_ID = 'cart'
 # PROFILE_SESSION_ID = 'profiles'
