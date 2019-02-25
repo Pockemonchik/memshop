@@ -11,7 +11,7 @@ class MemForm(forms.ModelForm):
         model=mem
         fields=('mem_img','disctiption','cost','category','available')
 class ProfileForm(forms.ModelForm):
-     user_picture=forms.ImageField(required=False)
+     user_picture=forms.ImageField(required=False,widget=forms.FileInput(attrs={'class' : 'a1'}))
      class Meta:
          model=UserProfile
          fields=('user_picture',)

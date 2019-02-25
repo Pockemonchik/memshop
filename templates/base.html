@@ -47,7 +47,7 @@
 		<div class="flex-container">
 			<ul class="topmenu">
 				<li><a href="{%url 'index'%}"><img src="{% static 'shoplist_css/images/puprlem.png'%}"></a></li>
-				<li><a href="/shop/">Магазин</a></li>
+				<li><a href="/shop/">Магазин{{request.session.cart}}</a></li>
 				{% if user.is_authenticated %}
     			<li><a href="/profiles/{{user.username}}">Личный кабинет<i class="fa fa-angle-down"></i></a>
     				<ul class="submenu">
@@ -82,4 +82,21 @@
  <script src="{% static "js/bootstrap.js"%}"></script>
 
     </body>
+		<script>
+		$('.like').click(function(){
+		      $.ajax({
+		               type: "POST",
+		               url: "{% url 'shop:like' %}",
+		               data: {'id': $(this).attr('name'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+		               dataType: "json",
+		               success: function(response) {
+		                      alert(response.message);
+		                      alert('Company likes count is now ' + response.likes_count);
+		                },
+		                error: function(rs, e) {
+		                       alert(rs.responseText);
+		                }
+		          });
+		    })
+		</script>
     </html>

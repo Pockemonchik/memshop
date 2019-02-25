@@ -7,7 +7,22 @@ from profiles.forms import MemForm,ProfileForm
 def detail_profile(request,slug):
     profile=get_object_or_404(UserProfile,user__username=slug)
     mems=mem.objects.filter(author=profile)
-    print(profile.user_id)
+    #считаем лайки
+    likes_count=0;
+    for memos in mems.iterator():
+        likes_count+=memos.total_likes()
+    print(likes_count)
+    #считаем рейтинг
+    pr=UserProfile.objects.order_by('user_balance')
+    profile_index=0;
+    for p in pr:
+        profile_index+=1
+        if p==profile:
+            break
+    rating=(profile_index/pr.count())*100
+
+    print(rating)
+    #обработка загрузки картинки
     if request.method=="POST":
         form=MemForm(request.POST,request.FILES)
         if form.is_valid():
@@ -23,12 +38,14 @@ def detail_profile(request,slug):
         form=MemForm()
         profileForm=ProfileForm()
 
+
     return render(request, 'profiles/profiles.html',
 {
 'profile':profile,
 'mems':mems,
 'form':form,
 'profileForm':profileForm,
+'rating':rating
 })
 
 def add_to_shop(request,mem_id):
