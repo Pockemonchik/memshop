@@ -22,7 +22,6 @@ class GroupViewSet(viewsets.ModelViewSet):
     serializer_class = GroupSerializer
 
 class MemViewSet(viewsets.ModelViewSet):
-
     queryset = mem.objects.filter(available=True)
     serializer_class = MemSerializer
 
@@ -33,7 +32,7 @@ class ProfileViewSet(viewsets.ModelViewSet):
     serializer_action_classes = {
                'add_mem': AddMemSerializer,
                }
-    # permission_classes=(AllowAny)
+    permission_classes=(IsAuthenticated,)
     @action(detail=True,methods=['post'])
     def add_mem(self, request, pk=None):
         profile=get_object_or_404(UserProfile,user__username="grisha")

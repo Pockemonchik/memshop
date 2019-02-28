@@ -15,7 +15,7 @@
     <div class="item-footer">
       <a href="#">upload image</a>
       <form action="." method="post" enctype="multipart/form-data">
-        {{profileForm.as_p}}
+          {{profileForm}}
         {% csrf_token %}
         <p><input type="submit" value="Change avatar"></p>
         </form>

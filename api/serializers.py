@@ -17,9 +17,17 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 
 class MemSerializer(serializers.HyperlinkedModelSerializer):
     author=serializers.StringRelatedField(many=False)
+    like = serializers.IntegerField(source='total_likes')
+    property=serializers.SerializerMethodField()
     class Meta:
         model = mem
-        fields = ('url', 'author', 'disctiption', 'mem_img','cost','id')
+        fields = ('url', 'author', 'disctiption', 'mem_img','cost','id','like')
+    def property(self,request):
+        u=User.objects.filter(likes__user=request.user)
+        if u==None:
+            print('1')
+        else:
+            print("2")
 class AddMemSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model=mem

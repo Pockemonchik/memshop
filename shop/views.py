@@ -5,6 +5,15 @@ from shop.models import mem,Category
 from cart.forms import CartAddmemForm
 from django.db.models import Q
 from .forms import Filterform
+from django.http import HttpResponse
+try:
+    from django.utils import simplejson as json
+except ImportError:
+    import json
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
+
 def List_shop(request,category_slug=None,question=None):
     category=None
     categories=Category.objects.all()
@@ -20,7 +29,17 @@ def List_shop(request,category_slug=None,question=None):
     #форма корзины
     cart_mem_form = CartAddmemForm()
     #форма фильтра по цене
+    u=[]
+    lmem=[]
+    for memos in mems:
+        u=User.objects.filter(likes=memos)
+        if request.user in u:
+            lmem.append(memos.id)
 
+    if u==None:
+        print('1')
+    else:
+        print("2")
     if request.method=="POST":
         filter=Filterform(request.POST)
         p1=request.POST.get('p1')
@@ -42,7 +61,34 @@ def List_shop(request,category_slug=None,question=None):
     'mems':mems,
     'category':category,
     'categories':categories,
-    'cart_mem_form': cart_mem_form
+    'cart_mem_form': cart_mem_form,
+    'lmem':lmem
     })
+@login_required
+@require_POST
+def like(request):
+    if request.method == 'POST':
+        user = request.user
+        id= request.POST.get('id', None)
+        mem_like = get_object_or_404(mem, id=id)
+        print(user)
+        print(id)
+        print("You disliked this")
 
+        if mem_like.likes.filter(id=user.id).exists():
+            # user has already liked this mem
+            # remove like/user
+            mem_like.likes.remove(user)
+            message = 'You disliked this'
+            print("You disliked this")
+        else:
+            # add a new like for a mem
+            mem_like.likes.add(user)
+            message = 'You liked this'
+            print("You liked this")
+
+    ctx = {'likes_count': mem_like.total_likes(), 'message': message}
+    print(ctx)
+    # use mimetype instead of content_type if django < 5
+    return HttpResponse(json.dumps(ctx), content_type='application/json')
 #     return redirect('List_shop',question)

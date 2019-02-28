@@ -28,9 +28,16 @@ class mem(models.Model):
     slug = models.SlugField(max_length=200, db_index=True)
     category = models.ForeignKey(Category, blank=True, null=True,related_name='mem',on_delete=models.CASCADE)
     available = models.BooleanField(default=False)
+    likes=models.ManyToManyField(User, related_name='likes')
     class Meta:
         index_together = (('id', 'slug'),)
     # def get_absolute_url(self):
     #     return reverse('shop:List_shop', args=[str(self.id)])
     def __str__(self):
-        return 'mem: {0},by user: {1}'.format(self.disctiption,self.author.user)
+        return 'mem: {0},by user: {1},with {2} likes'.format(self.disctiption,self.author.user,self.likes.count())
+    def total_likes(self):
+        """
+        Likes for the company
+        :return: Integer: Likes for the company
+        """
+        return self.likes.count()

@@ -35,7 +35,7 @@
 
   </div>
   </div> -->
-  <div class="cards">
+  <div class="cards_shop">
     {%for mem in mems%}
   <div class="product-item">
       <div class="product-img">
@@ -54,19 +54,27 @@
               <form action="{% url "cart:cart_add" mem.id  %}" method="post">
                     {{ cart_mem_form }}
                     {% csrf_token %}
-                    <input type="submit" value="Add to cart">
+                      <button class="cart-button"><input  type="submit" value="Add to cart"></button>
+                    <!-- <input  type="submit" value="Add to cart"> -->
                   </form>`
-              <button class="cart-button">В корзину</button>
+
             </div>
             <div class="add-to-links">
-              <a href="" class="wishlist"></a>
-              <a href="" class="like"><img src="{% static 'shoplist_css/images/like.png'%}"><h2>82</h2></a>
+              <a href="../../profiles/{{mem.author}}" class="wishlist">by {{mem.author}}</a>
+              {% if user.is_authenticated%}
+              {%if mem.id in lmem%}
+              11111111111111111111
+                {%endif%}
+              <a href="" class="like"><img src="{% static 'shoplist_css/images/like.png'%}"><h2>{{mem.total_likes}}</h2></a>
+              <input  class="like" type="button" name="{{ mem.id }}" id="like" value="Like" />
+              {%endif%}
             </div>
           </div>
       </div>
   </div>
   {%endfor%}
 </div>
+
 <!-- <div>
   <div class="album py-5 bg-light">
       <div class="container">
@@ -134,5 +142,4 @@
     </div>
 </div>
 </div> -->
-
 {% endblock%}
