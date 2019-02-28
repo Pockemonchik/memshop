@@ -9,7 +9,7 @@
       {% if profile.user_picture %}
       <img src="{{profile.user_picture.url}}">
       {%else%}
-      <img src="{%static "haha.png"%}" maxheight="500" width=100%>
+      <img src="{%static 'haha.png'%}" maxheight="500" width=100%>
       {% endif %}
     </div>
     <div class="item-footer">
@@ -39,117 +39,82 @@
       <a href="#">choose file</a>
     </div>
   </div>
+  <div class="cardss">
+<!-- <h4>YOUR MEMES</h4> -->
+  <div class="product-item">
+    <div class="product-img">
+      <a href="">
+          <img src="https://html5book.ru/wp-content/uploads/2015/10/black-dress.jpg">
+      </a>
+    </div>
+    <div class="product-list">
+      <h3>Маленькое черное платье</h3>
+      <div class="stars"></div>
+      <span class="price">₽ 1999</span>
+      <div class="actions">
+          <div class="add-to-cart">
+            <a href="" class="cart-button">В корзину</a>
+          </div>
+          <div class="add-to-links">
+            <a href="" class="wishlist"></a>
+            <a href="" class="like"><img src="{% static 'shoplist_css/images/like.png'%}"><h2>82</h2></a>
+          </div>
+        </div>
+    </div>
 </div>
-<div class="cssSlider">
-<h4>YOUR MEMES</h4>
-<ul class="slides">
-  <li id="slide1"><img src="https://images.unsplash.com/photo-1483653364400-eedcfb9f1f88?auto=format&fit=crop&w=840&q=60" alt="" /></li>
-  <li id="slide2"><img src="https://images.unsplash.com/photo-1433256392503-913cee5877e3?auto=format&fit=crop&w=840&q=60" alt="" /></li>
-  <li id="slide3"><img src="https://images.unsplash.com/photo-1483653085484-eb63c9f02547?auto=format&fit=crop&w=840&q=60" alt="" /></li>
-  <li id="slide4"><img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=840&q=60" alt="" /></li>
-  <li id="slide5"><img src="https://images.unsplash.com/photo-1453284441168-8780c9f52097?auto=format&fit=crop&w=840&q=60" alt="" /></li>
-</ul>
-<ul class="thumbnails">
-  <li><a href="#slide1"><img src="https://images.unsplash.com/photo-1483653364400-eedcfb9f1f88?auto=format&fit=crop&w=840&q=60" /></a></li>
-  <li><a href="#slide2"><img src="https://images.unsplash.com/photo-1433256392503-913cee5877e3?auto=format&fit=crop&w=840&q=60" /></a></li>
-  <li><a href="#slide3"><img src="https://images.unsplash.com/photo-1483653085484-eb63c9f02547?auto=format&fit=crop&w=840&q=60" /></a></li>
-  <li><a href="#slide4"><img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=840&q=60" /></a></li>
-  <li><a href="#slide5"><img src="https://images.unsplash.com/photo-1453284441168-8780c9f52097?auto=format&fit=crop&w=840&q=60" /></a></li>
-</ul>
+
+<div class="product-item">
+    <div class="product-img">
+      <a href="">
+          <img src="https://html5book.ru/wp-content/uploads/2015/10/black-dress.jpg">
+      </a>
+    </div>
+    <div class="product-list">
+      <h3>Маленькое черное платье</h3>
+      <div class="stars"></div>
+      <span class="price">₽ 1999</span>
+      <div class="actions">
+          <div class="add-to-cart">
+            <a href="" class="cart-button">В корзину</a>
+          </div>
+          <div class="add-to-links">
+            <a href="" class="wishlist"></a>
+            <a href="" class="like"><img src="{% static 'shoplist_css/images/like.png'%}"><h2>82</h2></a>
+          </div>
+        </div>
+    </div>
 </div>
+
+<div class="product-item">
+    <div class="product-img">
+      <a href="">
+          <img src="https://html5book.ru/wp-content/uploads/2015/10/black-dress.jpg">
+      </a>
+    </div>
+    <div class="product-list">
+      <h3>Маленькое черное платье</h3>
+      <div class="stars"></div>
+      <span class="price">₽ 1999</span>
+      <div class="actions">
+          <div class="add-to-cart">
+            <a href="" class="cart-button">В корзину</a>
+          </div>
+          <div class="add-to-links">
+            <a href="" class="wishlist"></a>
+            <a href="" class="like"><img src="{% static 'shoplist_css/images/like.png'%}"><h2>82</h2></a>
+          </div>
+        </div>
+    </div>
+</div>
+
 <div class="footcontainer">
   <div class="footer">
     &copy; pokech and S33z0ws
     </div>
   </div>
 </div>
+</div>
 
 
-
-
-
-<!-- <div class="container">
-  <div class="row">
-    <div class="col-md-6">
-      <div class="card mb-4 bg-light hadow-sm" >
-        {% if profile.user_picture %}
-        <img src="{{profile.user_picture.url}}" maxheight="500" width=100%>
-        {%else%}
-        <img src="{%static "haha.png"%}" maxheight="500" width=100%>
-        {% endif %}
-        {% if user.username == profile.user.username %}
-        <div class="card-body">
-          <form action="." method="post" enctype="multipart/form-data">
-            {{profileForm.as_p}}
-            {% csrf_token %}
-            <p><input type="submit" value="Change avatar"></p>
-            </    form>
-          </div>
-          {% endif %}
-
-
-
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="card mb-4 bg-light hadow-sm" >
-          <p>User: {{profile.user}}</p>
-          {% if user.is_authenticated %}
-          <p class="h3">Your balanse : {{profile.user_balance}} </p>
-          <p>About me: jklgfghjkmngyhgvbjhbkj,</p>
-          {% else %}
-          <p class="h3">Info about {{profile.user}} : jklgfghjkmngyhgvbjhbkj</p>
-          {% endif %}
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-
-
-
-
-  <div class="album py-5 bg-light">
-    <div class="container">
-      <p>MEMS of this profile</p>
-      <div class="row">
-
-        {%for mem in mems%}
-        <div class="col-md-4">
-          <div class="card mb-4 bg-light hadow-sm" >
-            {% if mem.mem_img %}
-            <img src="{{mem.mem_img.url}}" height="300" width="300">
-            {% endif %}
-            <div class="card-body">
-              <p class="card-text">{{mem.disctiption}}</p>
-              <div class="d-flex justify-content-between align-items-center">
-                {% if user.username == profile.user.username %}
-                <div class="btn-group">
-                  <a class="btn btn-sm btn-outline-secondary" href="{% url 'add_to_shop' mem.id%}">Add to shop</a>
-                  <a class="btn btn-sm btn-outline-secondary" href="{% url 'del_from_shop' mem.id%}">Del from shop</a>
-                </div>
-                {% endif %}
-                <small class="text-muted">9 mins</small>
-              </div>
-              <p>{{mem.cost}}</p>
-              {%if mem.available%}
-              <p><strong>on sale</strong></p>
-              {%else%}
-              <p><strong>in storage</strong></p>
-              {%endif%}
-            </div>
-          </div>
-        </div>
-        {%endfor%}
-      </div>
-      <p> DOBAVIT MEM!</p>
-      <form action="." method="post" enctype="multipart/form-data">
-        {{form.as_p }}
-        {% csrf_token %}
-        <p><input type="submit" value="Add MEM"></p>
-      </form>
-    </div>
-
-  </div> -->
+</div>
   {% endblock%}

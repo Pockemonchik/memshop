@@ -21,7 +21,7 @@ class Category(models.Model):
         return self.name
 
 class mem(models.Model):
-    author=models.ForeignKey(UserProfile,related_name='mems_of_profile',on_delete=models.CASCADE)
+    author=models.ForeignKey(UserProfile,related_name='mems_of_profile',on_delete=models.CASCADE,null=True)
     disctiption=models.TextField()
     mem_img=models.ImageField(upload_to='mems', blank=True, null=True)
     cost=models.IntegerField(default=0)
